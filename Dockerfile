@@ -1,10 +1,9 @@
 FROM ruby:3.0
-RUN apt-get update && apt-get install -y \
+RUN apt-get update -qq && apt-get install -y postgresql-client \
     build-essential \
-    libpq-dev \
-    nodejs \
-    postgresql-client \
-    yarn
+    libpq-dev
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && apt-get install -y nodejs
+RUN npm install --global yarn
 
 WORKDIR /rails-lesson
 COPY Gemfile Gemfile.lock /rails-lesson/
