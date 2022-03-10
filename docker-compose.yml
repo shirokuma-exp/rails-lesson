@@ -1,0 +1,16 @@
+# docker build <build contexts> => docker-compose build
+# docker run <image> => docker-compose up
+# docker ps => docker-compose ps
+# docker exec <container> => docker-compose exec <service>
+
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - '3000:3000'
+    volumes:
+      - '.:/rails-lesson'
+    tty: true
+    stdin_open: true
